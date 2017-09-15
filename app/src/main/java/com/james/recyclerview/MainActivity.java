@@ -2,12 +2,15 @@ package com.james.recyclerview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +22,16 @@ public class MainActivity extends AppCompatActivity {
         initCountries();
         RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+
+        /*StaggeredGridLayoutManager 瀑布流布局
+        * 构造函数第一个为创建多少列，传入3就会创建3列*/
+       /* StaggeredGridLayoutManager layoutManager=new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);*/
+
         recyclerView.setLayoutManager(layoutManager);
+
+        /*layoutManager.setOrientation(int i) 可以修改布局的排列方向，现在RecyclerView可以横向滚动*/
+
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         CountryAdapter countryAdapter=new CountryAdapter(countries);
         recyclerView.setAdapter(countryAdapter);
     }
@@ -46,5 +58,14 @@ public class MainActivity extends AppCompatActivity {
             countries.add(brazil);
 
         }
+    }
+    public String getRandomLengthName(String name){
+        Random random=new Random();
+        int length=random.nextInt(20)+1;
+        StringBuilder builder=new StringBuilder();
+        for(int i=0;i<length;i++){
+            builder.append(name);
+        }
+        return builder.toString();
     }
 }

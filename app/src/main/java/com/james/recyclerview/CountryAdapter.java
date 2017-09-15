@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -24,11 +25,14 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     *
     * */
     static class ViewHolder extends RecyclerView.ViewHolder{
+
+        View countryView;
         ImageView countryImage;
         TextView countryName;
 
         public ViewHolder(View view) {
             super(view);
+            countryView=view;
             countryImage=(ImageView)view.findViewById(R.id.country_image);
             countryName=(TextView)view.findViewById(R.id.country_name);
         }
@@ -47,7 +51,24 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.country_item,parent,false);
-        ViewHolder holder=new ViewHolder(view);
+        final  ViewHolder holder=new ViewHolder(view);
+        /*为ViewHolder的每个子项添加点击事件,在RecyclerView中,需要为每个子项的view单独添加控件*/
+        holder.countryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position=holder.getAdapterPosition();
+                Country country=countryList.get(position);
+                Toast.makeText(view.getContext(),"you clicked view "+country.getCountryName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.countryImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position=holder.getAdapterPosition();
+                Country country=countryList.get(position);
+                Toast.makeText(view.getContext(),"you clicked image "+country.getCountryName(),Toast.LENGTH_SHORT).show();
+            }
+        });
         return holder;
     }
 
