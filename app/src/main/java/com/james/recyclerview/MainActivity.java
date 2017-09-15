@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         CountryAdapter countryAdapter=new CountryAdapter(countries);
-        /*recyclerView.setAdapter(countryAdapter);*/
+        recyclerView.setAdapter(countryAdapter);
     }
     private void  initCountries() {
 

@@ -29,6 +29,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
         public ViewHolder(View view) {
             super(view);
+            countryImage=(ImageView)view.findViewById(R.id.country_image);
+            countryName=(TextView)view.findViewById(R.id.country_name);
         }
 
     }
