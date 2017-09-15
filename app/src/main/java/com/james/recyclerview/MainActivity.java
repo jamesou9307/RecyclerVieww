@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         /*layoutManager.setOrientation(int i) 可以修改布局的排列方向，现在RecyclerView可以横向滚动*/
 
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        /*layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);*/
         CountryAdapter countryAdapter=new CountryAdapter(countries);
         recyclerView.setAdapter(countryAdapter);
     }
